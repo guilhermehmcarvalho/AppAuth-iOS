@@ -148,6 +148,7 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
     @param redirectURL The client's redirect URI.
     @param responseType The expected response type.
     @param additionalParameters The client's additional authorization parameters.
+    @param additionalHeaders The client's additional authorization headers.
     @remarks This convenience initializer generates a state parameter and PKCE challenges
         automatically.
  */
@@ -157,7 +158,8 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
                    scopes:(nullable NSArray<NSString *> *)scopes
               redirectURL:(NSURL *)redirectURL
              responseType:(NSString *)responseType
-     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;
+     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters
+        additionalHeaders:(nullable NSDictionary<NSString *, NSString *> *)additionalHeaders;
 
 /*! @brief Creates an authorization request with custom nonce, a secure @c state,
         and PKCE with S256 as the @c code_challenge_method.

@@ -107,7 +107,8 @@ NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256 = @"S256";
                                  scopes:
                             redirectURL:
                            responseType:
-                   additionalParameters:)
+                   additionalParameters:
+                  additionalHeaders:)
     )
 
 
@@ -173,6 +174,7 @@ NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256 = @"S256";
              redirectURL:(NSURL *)redirectURL
             responseType:(NSString *)responseType
     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters
+       additionalHeaders:(nullable NSDictionary<NSString *, NSString *> *)additionalHeaders
 {
 
   // generates PKCE code verifier and challenge
@@ -276,9 +278,9 @@ NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256 = @"S256";
   NSDictionary *additionalParameters =
       [aDecoder decodeObjectOfClasses:additionalParameterCodingClasses
                                forKey:kAdditionalParametersKey];  
-  NSDictionary *additionalHeaders =
-      [aDecoder decodeObjectOfClasses:additionalParameterCodingClasses
-                               forKey:kAdditionalHeadersKey];
+//  NSDictionary *additionalHeaders =
+//      [aDecoder decodeObjectOfClasses:additionalParameterCodingClasses
+//                               forKey:kAdditionalHeadersKey];
 
   self = [self initWithConfiguration:configuration
                             clientId:clientID
@@ -371,7 +373,7 @@ NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256 = @"S256";
   if (_codeChallengeMethod) {
     [query addParameter:kCodeChallengeMethodKey value:_codeChallengeMethod];
   }
-
+  
   // Construct the URL:
   return [query URLByReplacingQueryInURL:_configuration.authorizationEndpoint];
 }
