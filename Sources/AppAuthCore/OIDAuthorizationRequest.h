@@ -191,6 +191,7 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
     @param redirectURL The client's redirect URI.
     @param responseType The expected response type.
     @param additionalParameters The client's additional authorization parameters.
+    @param additionalHeaders Additional headers for the token request
     @remarks This convenience initializer generates a state parameter and PKCE challenges
         automatically.
  */
@@ -201,7 +202,8 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
                    scopes:(nullable NSArray<NSString *> *)scopes
               redirectURL:(NSURL *)redirectURL
              responseType:(NSString *)responseType
-     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;
+     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters
+        additionalHeaders:(nullable NSDictionary<NSString *, NSString *> *)additionalHeaders;
 
 /*! @brief Designated initializer.
     @param configuration The service's configuration.
@@ -235,8 +237,7 @@ extern NSString *const OIDOAuthorizationRequestCodeChallengeMethodS256;
              codeVerifier:(nullable NSString *)codeVerifier
             codeChallenge:(nullable NSString *)codeChallenge
       codeChallengeMethod:(nullable NSString *)codeChallengeMethod
-     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters
-    NS_DESIGNATED_INITIALIZER;
+     additionalParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;
 
 /*! @brief Constructs the request URI by adding the request parameters to the query component of the
         authorization endpoint URI using the "application/x-www-form-urlencoded" format.
